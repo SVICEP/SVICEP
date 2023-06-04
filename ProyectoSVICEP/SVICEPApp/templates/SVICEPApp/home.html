@@ -1,0 +1,152 @@
+<!-- extrayendo estilo de la plantilla base -->
+{% extends "SVICEPApp/base.html" %}
+
+<!-- cargando la carpeta de estilos -->
+{% load static %}
+
+<!-- contenido cambiante -->
+{% block content %}
+
+<!-- estilo personalizado para esta plantilla -->
+<style>
+
+    .pa{
+        font-size: 25px;
+    }
+
+    .subti{
+        color:   #000000;
+    }
+    
+    .uni{
+        display: flex;
+    }
+    
+</style>
+
+<!-- encabezado de la pagina -->
+<br>
+<div class="container">
+    <div class="container-fluid">
+        <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+            <div class="col-md-6 px-0">
+            <h1 class="display-4 fst-italic"><b>Impacto Climático en la Agricultura</b></h1>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- texto de introduccion a la pagina -->
+    <div class="container-fluid text-white">
+        <div class="">
+            <p class="pa" style="text-align: justify;">La comunidad internacional está muy preocupada por el cambio climático, que afecta a muchas industrias, incluida la agricultura. 
+                Muchos salvadoreños dependen de la agricultura para su sustento diario, lo que la convierte en un sector importante de la economía del país. La disminución de 
+                la producción y el aumento de los precios de los alimentos se han debido a que el cambio climático ha hecho cada vez más impredecible el rendimiento de las 
+                cosechas. 
+            </p>
+        </div>
+        
+    </div>
+
+    <hr><br>
+
+    <!-- Informacion para visualizar en la pagina -->
+
+    <div class="container-fluid uni">
+        <div class="container-fluid">
+        <h2 class="subti"><b>Sequia meteorológica severa</b></h2>
+        <p class="pa text-white" style="text-align: justify;">En 2018 El Salvador sufrió el impacto de 3 periodos de sequía meteorológica entre los meses de junio y agosto. En 24 de julio, la Dirección General de 
+            Protección Civil, Prevención y Mitigación de Desastres (DGPC) declaró alerta roja en 142 municipios. La sequía coincidió con uno de los dos períodos de 
+            siembra de granos básicos (mayo-agosto), afectando principalmente la zona oriental del país.</p>
+        </div>
+        <div class="container-fluid">
+            <img class="img-thumbnail" src="{% static 'SVICEPApp/img/cultivosMaiz.jpg' %}" alt=""> 
+        </div>
+    </div> 
+
+    <br><hr><br>
+
+    <div class="container-fluid">
+       <div class="container-fluid"> 
+            <h2 class="subti"><b>Tormenta tropical Ivo</b></h2>
+            <p class="pa text-white" style="text-align: justify;">
+                En 2019, el país experimentó una temporada de lluvias intensas que provocó inundaciones y deslizamientos de tierra en varias zonas del territorio.
+            </p><br>    
+        </div>
+        <div class="container-fluid uni">
+            <div class="container-fluid">
+                <img class="img-thumbnail" src="{% static 'SVICEPApp/img/cultivosinundado.jpg' %}" alt="">
+            </div>
+            <div class="container-fluid">
+                <p class="pa text-white">
+                    La tormenta tropical Ivo: En septiembre de 2019, El Salvador fue impactado por la tormenta tropical Ivo, la cual generó importantes precipitaciones 
+                    en la zona costera del país. Según datos del MAG, la tormenta afectó más de 2,500 hectáreas de cultivos en los departamentos de Usulután y San Miguel. 
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <br><hr><br>
+    
+    <div class="container-fluid">
+        <h2 class="subti"><b>Sequia prolongada y fuertes tormentas tropicales</b></h2><br>
+        <div class="container-fluid uni">
+            <div class="container-fluid">
+                <p class="pa text-white" style="text-align: justify;">
+                En el año 2020, el país fue nuevamente afectado por una sequía prolongada que provocó una disminución en la producción de granos básicos.
+                También, El Salvador fue afectado por dos tormentas tropicales consecutivas: Amanda y Cristóbal. Estos eventos causaron inundaciones y deslizamientos 
+                de tierra en varias zonas del país, la producción agrícola también se vio seriamente afectada, especialmente en la zona costera, donde se concentra la 
+                producción de camarón y otros productos marinos. 
+                </p>
+            </div>
+            <div class="container-fluid"><br>
+                <img class="img-thumbnail" src="{% static 'SVICEPApp/img/frijolescaso.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+    <br><hr><br>
+    
+    <div class="container-fluid">
+        <h2 class="subti"><b>Tormenta tropical</b></h2><br>
+        <div class="container-fluid uni">
+            <div class="container-fluid"><br>
+                <img class="img-thumbnail" src="{% static 'SVICEPApp/img/perdidacultivoslluvia.jpg' %}" alt="">
+            </div>
+            <div class="container-fluid">
+                <p class="pa text-white" style="text-align: justify;">
+                    En el año 2021, el país fue afectado por una tormenta tropical que provocó inundaciones repentinas en varias zonas del país. 
+                    Según datos del MAG, más de 8,000 hectáreas de cultivos fueron afectadas por esta tormenta, lo que provocó una disminución en la producción de granos básicos.
+                    Basado en un informe publicado en la Revista Iberoamericana de Bioeconomía y Cambio Climático, que data de finales de 2021, estos son algunos de los eventos 
+                    climatológicos que más han golpeado a El Salvador durante un siglo: en 1906, intensas lluvias causaron graves destrucciones en todo el territorio
+                </p>
+            </div>
+            
+        </div>
+    </div>
+
+    <br><hr><br>
+    
+    <div class="container-fluid">
+        <h2 class="subti"><b>Tormenta Julia</b></h2><br>
+        <div class="container-fluid uni">
+            <div class="container-fluid">
+                <p class="pa text-white" style="text-align: justify;">
+                En el año 2022, el país ha sido afectado por una sequía prolongada que ha provocado una disminución en la producción de granos básicos.
+                La tormenta Julia ingresó por Nicaragua y avanzó frente a las costas de El Salvador, Guatemala y México. Las lluvias torrenciales dejaron 
+                estragos en el país. Además, El Salvador también tiene alta exposición al riesgo de eventos naturales adversos, incluidos terremotos y 
+                erupciones volcánicas, y es altamente vulnerable a los impactos del cambio climático, incluido el aumento de inundaciones, sequías y tormentas tropicales.
+                </p>
+            </div>
+            <div class="container-fluid"><br>
+                <img class="img-thumbnail" src="{% static 'SVICEPApp/img/perdidafrijol.png' %}" alt="">
+            </div>
+        </div>
+        
+    </div><br>
+
+</div>
+
+<!-- fin del contenido cambiante -->
+{% endblock %}

@@ -1,0 +1,160 @@
+<!-- extrayendo estilo de la plantilla base -->
+{% extends "SVICEPApp/base.html" %}
+
+<!-- cargando la carpeta de estilos -->
+{% load static %}
+
+<!-- contenido cambiante -->
+{% block content %}
+
+<!-- estilos personalizados para esta plantilla -->
+<style>
+    .center{
+        text-align: center;
+    }
+
+    .fondo{
+        background-color: white;
+    }
+
+</style>
+
+<!-- renderizado de las graficas -->
+<div class="container"><br>
+    <div class="container-fluid fondo rounded"><br>
+        <h1 style="text-align: center;"> Cantidad de quintales perdidos de los cultivos en los ultimos años </h1><br>
+        <div id="graficaProductoAfectado3" style="width: 100%; height: 600px;"></div>
+    </div>
+    <br><hr><br>
+    <div class="container-fluid fondo rounded"><br>
+        <h1 style="text-align: center;"> Dinero perdido por la perdida de cultivos en los ultimos años </h1><br>
+        <canvas id="graficaPerdidaEconomica" style="width: 100%; height: 600px;"></canvas><br>
+    </div>
+    <hr>
+    
+    
+</div>
+
+<!-- Script de la grafica de perdida economica -->
+<script>
+    // Obteniendo los datos de los modelos desde Django y pasandolos a JavaScript
+    var datosPerdidaEconomica = JSON.parse('{{ datos_perdida_economica|safe }}');
+
+    // Preparando los datos para las gráficas de Chart.js
+    var labelsPerdidaEconomica = datosPerdidaEconomica.map(function(item) {
+        return item.anio;
+    });
+
+    var dataPerdidaEconomica = datosPerdidaEconomica.map(function(item) {
+        return item.cantDineroPerdido;
+    });
+
+    // Creando la gráfica para el modelo PerdidaEconomica
+    var ctxPerdidaEconomica = document.getElementById('graficaPerdidaEconomica').getContext('2d');
+    var graficaPerdidaEconomica = new Chart(ctxPerdidaEconomica, {
+        type: 'bar',
+        data: {
+            labels: labelsPerdidaEconomica,
+            datasets: [{
+                label: 'Cantidad de Dinero Perdido $',
+                data: dataPerdidaEconomica,
+                backgroundColor: '#546fc6',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+<!-- Script de la grafica de producto afectado -->
+<script>
+    // Obteniendo los datos de los modelos desde Django y pasandolos a JavaScript
+    var datosProductoAfectado1 = JSON.parse('{{ datos_producto_afectado1|safe }}');
+    var datosProductoAfectado2 = JSON.parse('{{ datos_producto_afectado2|safe }}');
+
+    // Preparando los datos para las gráficas de Echart.js
+    var dataProductoAfectado1 = datosProductoAfectado1.map(function(item) {
+        return item.cantidadQuintales;
+    });
+
+    var aniosProductoAfectado1 = datosProductoAfectado1.map(function(item) {
+        return item.anio;
+    });
+
+    var labelsProductoAfectado1 = [];
+
+    // verificando si hay datos repetidos en el modelo, si los hay, extrae los duplicados y lo muestra solo 1 vez
+    datosProductoAfectado1.forEach(function(item) {
+        if (!labelsProductoAfectado1.includes(item.nombreProducto)) {
+            labelsProductoAfectado1.push(item.nombreProducto);
+        }
+    });
+
+    // Prepara los datos para las gráficas de Echart.js
+    var dataProductoAfectado2 = datosProductoAfectado2.map(function(item) {
+        return item.cantidadQuintales;
+    });
+
+    var aniosProductoAfectado2 = datosProductoAfectado2.map(function(item) {
+        return item.anio;
+    });
+
+    var labelsProductoAfectado2 = [];
+
+    // verificando si hay datos repetidos en el modelo, si los hay, extrae los duplicados y lo muestra solo 1 vez
+    datosProductoAfectado2.forEach(function(item) {
+        if (!labelsProductoAfectado2.includes(item.nombreProducto)) {
+            labelsProductoAfectado2.push(item.nombreProducto);
+        }
+    });
+    
+    // Creando la gráfica para el modelo ProductoAfectado
+    var graficaProductoAfectado1 = echarts.init(document.getElementById('graficaProductoAfectado3'));
+    var option = {
+        title: {
+            text: 'Maiz vs Frijol',
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: [labelsProductoAfectado1.join(", ") , labelsProductoAfectado2.join(", ")]
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: aniosProductoAfectado1
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value'
+            }
+        ],
+        series: [
+            {
+                name: labelsProductoAfectado1.join(", "),
+                type: 'bar',
+                data: dataProductoAfectado1,
+            },
+            {
+                name: labelsProductoAfectado2.join(", "),
+                type: 'bar',
+                data: dataProductoAfectado2,
+            }
+        ]
+    };
+
+    // Renderizando la gráfica con la opción configurada
+    graficaProductoAfectado1.setOption(option);
+</script>
+
+<!-- Script de la grafica de producto afectado -->
+{% endblock %}
